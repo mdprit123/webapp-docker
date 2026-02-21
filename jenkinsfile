@@ -22,8 +22,8 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 sh '''
-                docker rm -f $jenkins/jenkins || true
-                docker run -d -p 8080:80 --name $jenkins/jenkins $jenkins/jenkins
+                docker rm -f $IMAGE_NAME || true
+                docker run -d -p 8080:80 --name $IMAGE_NAME $IMAGE_NAME
                 '''
             }
         }
