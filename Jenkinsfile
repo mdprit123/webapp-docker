@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "my-webapp"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/mdprit123/webapp-docker.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $IMAGE_NAME .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh '''
+                docker rm -f $IMAGE_NAME || true
+                docker run -d -p 8080:80 --name $IMAGE_NAME $IMAGE_NAME
+                '''
+            }
+        }
+    }
+}
