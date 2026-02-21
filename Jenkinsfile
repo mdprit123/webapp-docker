@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh '''
                 docker rm -f $IMAGE_NAME || true
-                docker run -d -p 8080:80 --name $IMAGE_NAME $IMAGE_NAME
+                docker run -d -p 8085:80 --name my-webapp my-webapp
                 '''
             }
         }
