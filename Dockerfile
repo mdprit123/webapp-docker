@@ -2,10 +2,10 @@
 FROM nginx:alpine
 
 # Copy custom Nginx config
-COPY nginx1.conf /etc/nginx1/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy web app files
-COPY app/ /usr/share/nginx1/html/
+COPY app/ /usr/share/nginx/html/
 
 # Expose port 80
 EXPOSE 80
